@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Visa Programs | Fly for Study</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --academic-blue: #1e3a8a;
+            --academic-gold: #f59e0b;
+            --academic-light: #dbeafe;
+            --sunset-orange: #f97316;
+            --dark-navy: #0f172a;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --gradient-study: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #f59e0b 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', 'Noto Sans Arabic', sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--bg-light); }
+        
+        /* Language Selector */
+        .language-selector { position: relative; margin-left: 1rem; }
+        .lang-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(30, 58, 138, 0.1); border: 2px solid rgba(30, 58, 138, 0.2); border-radius: 8px; cursor: pointer; transition: 0.3s ease; font-size: 0.875rem; font-weight: 700; color: var(--academic-blue); }
+        .lang-btn:hover { background: rgba(30, 58, 138, 0.2); transform: scale(1.05); }
+        .lang-dropdown { position: absolute; top: 100%; right: 0; margin-top: 0.5rem; background: white; border-radius: 12px; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); padding: 0.5rem; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.3s ease; z-index: 1001; display: flex; flex-direction: column; gap: 0.25rem; }
+        .language-selector.active .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .lang-option { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; transition: 0.15s ease; border: 2px solid transparent; background: transparent; font-size: 0.875rem; font-weight: 700; color: var(--text-dark); }
+        .lang-option:hover { background: var(--bg-light); transform: scale(1.1); }
+        .lang-option.active { background: var(--academic-light); border-color: var(--academic-blue); }
+        
+        body[dir="rtl"] { direction: rtl; }
+        body[dir="rtl"] .nav-container { flex-direction: row-reverse; }
+        body[dir="rtl"] .nav-links { flex-direction: row-reverse; margin-left: 2rem; margin-right: auto; }
+        body[dir="rtl"] .language-selector { margin-left: 0; margin-right: 1rem; }
+        body[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+        body[dir="rtl"] .countries-grid, body[dir="rtl"] .testimonials-grid { direction: rtl; }
+        body[dir="rtl"] .testimonial-card { text-align: right; }
+        body[dir="rtl"] .timeline-step { direction: ltr; }
+        
+        .arabic-text { font-family: 'Noto Sans Arabic', sans-serif; line-height: 1.8; letter-spacing: 0; word-spacing: 2px; }
+        
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 0; transition: 0.3s ease; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .nav-container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--academic-blue); font-weight: 800; font-size: 1.5rem; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #f97316, #ec4899); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; margin-left: auto; margin-right: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.15s ease; position: relative; }
+        .nav-links a:hover { color: var(--academic-blue); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-dark); font-size: 1.5rem; cursor: pointer; }
+        
+        .page-header { background: var(--gradient-study); padding: 10rem 0 6rem; text-align: center; color: white; position: relative; overflow: hidden; }
+        .page-header::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 30px 30px; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; position: relative; }
+        .page-header p { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto 0.5rem; position: relative; }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Success Stories Section */
+        .testimonials-section { background: white; padding: 6rem 0; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .testimonial-card { background: var(--bg-light); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transition: 0.3s ease; }
+        .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        .testimonial-image { width: 100%; height: 250px; object-fit: cover; background: linear-gradient(135deg, var(--academic-light), var(--academic-blue)); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; }
+        .testimonial-image img { width: 100%; height: 100%; object-fit: cover; }
+        .testimonial-content { padding: 1.5rem; }
+        .testimonial-content h3 { color: var(--academic-blue); margin-bottom: 0.5rem; font-size: 1.25rem; }
+        .testimonial-content p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 1rem; }
+        .visa-badge { display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.875rem; font-weight: 600; }
+        
+        .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; padding: 4rem 0; }
+        
+        .country-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transition: 0.3s ease; border: 2px solid transparent; }
+        .country-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); border-color: var(--academic-blue); }
+        
+        .country-header { padding: 2rem; color: white; position: relative; }
+        .country-france { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+        .country-hungary { background: linear-gradient(135deg, #059669, #10b981); }
+        .country-poland { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .country-italy { background: linear-gradient(135deg, #059669, #34d399); }
+        .country-russia { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .country-china { background: linear-gradient(135deg, #eab308, #facc15); color: var(--dark-navy) !important; }
+        
+        .country-flag { font-size: 3rem; margin-bottom: 1rem; }
+        .country-header h2 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .partner-info { font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem; }
+        
+        .country-body { padding: 2rem; }
+        .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #e2e8f0; }
+        .fee-row:last-child { border-bottom: none; }
+        .fee-label { color: var(--text-light); font-size: 0.875rem; }
+        .fee-value { font-weight: 700; color: var(--text-dark); }
+        .fee-zero { color: #10b981; font-size: 1.25rem; }
+        
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s ease; border: none; cursor: pointer; font-size: 1rem; margin-top: 1rem; }
+        .btn-primary { background: var(--academic-blue); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(30, 58, 138, 0.3); }
+        .btn-whatsapp { background: #25d366; color: white; }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+        
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto 3rem; }
+        .section-tag { display: inline-block; padding: 0.5rem 1rem; background: var(--academic-light); color: var(--academic-blue); border-radius: 20px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--text-dark); margin-bottom: 1rem; }
+        .section-desc { color: var(--text-light); font-size: 1.125rem; }
+        
+        .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; }
+        body[dir="rtl"] .whatsapp-float { right: auto; left: 2rem; }
+        .whatsapp-btn { width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.75rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); transition: 0.3s ease; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 2rem; gap: 1rem; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+            body[dir="rtl"] .nav-links { margin-left: 0; margin-right: 0; }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .countries-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .language-selector { margin-left: 0.5rem; }
+            body[dir="rtl"] .language-selector { margin-right: 0.5rem; margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/boobworld/index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                <span data-translate="siteName">Fly for Study</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/boobworld/index.html" data-translate="navHome">Home</a></li>
+                <li><a href="/boobworld/pages/study-visa.html" data-translate="navStudy">Study Visa</a></li>
+                <li><a href="/boobworld/pages/e-visa.html" data-translate="navEvisa">E-Visa</a></li>
+                <li><a href="/boobworld/pages/canada-visa.html" data-translate="navCanada">Canada</a></li>
+                <li><a href="/boobworld/pages/services.html" data-translate="navServices">Services</a></li>
+                <li><a href="/boobworld/pages/contact.html" data-translate="navContact">Contact</a></li>
+            </ul>
+            
+            <div class="language-selector" id="langSelector">
+                <button class="lang-btn" onclick="toggleLanguageDropdown()" id="currentLangBtn">EN</button>
+                <div class="lang-dropdown">
+                    <button class="lang-option active" onclick="changeLanguage('en')" data-lang="en">EN</button>
+                    <button class="lang-option" onclick="changeLanguage('fr')" data-lang="fr">FR</button>
+                    <button class="lang-option" onclick="changeLanguage('ar')" data-lang="ar">AR</button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 data-translate="pageTitle">Study Visa Programs</h1>
+            <p data-translate="pageSubtitle">Your pathway to world-class education</p>
+            <p style="font-size: 1rem; opacity: 0.8; margin-top: 1rem;" data-translate="pageDesc">Comprehensive support for Algerian students seeking higher education abroad</p>
+        </div>
+    </header>
+
+    <!-- Success Stories Section (IN THE MIDDLE) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-translate="successTag">Success Stories</span>
+                <h2 class="section-title" data-translate="successTitle">Visa Approvals & Results</h2>
+                <p class="section-desc" data-translate="successDesc">Real success stories from students who achieved their dreams with our help</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <i class="fas fa-passport"></i>
+                        <!-- Replace with actual image: <img src="/boobworld/images/visa-france-1.jpg" alt="France Visa"> -->
+                    </div>
+                    <div class="testimonial-content">
+                        <span class="visa-badge">France Student Visa</span>
+                        <h3>Ahmed K.</h3>
+                        <p data-translate="testimonial1">"Got my France student visa in just 3 weeks! The team helped me with Campus France and all documents. Now studying at Paris-Saclay."</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <i class="fas fa-passport"></i>
+                        <!-- Replace with actual image: <img src="/boobworld/images/visa-hungary-1.jpg" alt="Hungary Visa"> -->
+                    </div>
+                    <div class="testimonial-content">
+                        <span class="visa-badge">Hungary Student Visa</span>
+                        <h3>Sarah M.</h3>
+                        <p data-translate="testimonial2">"Stipendium Hungaricum scholarship winner! Full support from application to visa stamping. Forever grateful."</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <i class="fas fa-passport"></i>
+                        <!-- Replace with actual image: <img src="/boobworld/images/visa-china-1.jpg" alt="China Visa"> -->
+                    </div>
+                    <div class="testimonial-content">
+                        <span class="visa-badge">China CSC Scholarship</span>
+                        <h3>Mohamed R.</h3>
+                        <p data-translate="testimonial3">"CSC scholarship approved! They guided me through every step. Now pursuing my Master's in Beijing."</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <i class="fas fa-passport"></i>
+                        <!-- Replace with actual image: <img src="/boobworld/images/visa-poland-1.jpg" alt="Poland Visa"> -->
+                    </div>
+                    <div class="testimonial-content">
+                        <span class="visa-badge">Poland Student Visa</span>
+                        <h3>Lina B.</h3>
+                        <p data-translate="testimonial4">"Professional service from start to finish. My Poland visa was approved without any issues. Highly recommended!"</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <i class="fas fa-passport"></i>
+                        <!-- Replace with actual image: <img src="/boobworld/images/visa-italy-1.jpg" alt="Italy Visa"> -->
+                    </div>
+                    <div class="testimonial-content">
+                        <span class="visa-badge">Italy Student Visa</span>
+                        <h3>Karim D.</h3>
+                        <p data-translate="testimonial5">"From Universitaly pre-enrollment to visa approval, they handled everything. Now living my dream in Rome!"</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <i class="fas fa-passport"></i>
+                        <!-- Replace with actual image: <img src="/boobworld/images/visa-russia-1.jpg" alt="Russia Visa"> -->
+                    </div>
+                    <div class="testimonial-content">
+                        <span class="visa-badge">Russia Student Visa</span>
+                        <h3>Nadia A.</h3>
+                        <p data-translate="testimonial6">"CSC Russia scholarship success! The medical test coordination was especially helpful. Thank you Fly for Study!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Section -->
+    <main class="container">
+        <div class="section-header" style="padding-top: 4rem;">
+            <span class="section-tag" data-translate="countriesTag">Choose Your Destination</span>
+            <h2 class="section-title" data-translate="countriesTitle">6 Countries, Unlimited Opportunities</h2>
+            <p class="section-desc" data-translate="countriesDesc">Click "Apply Now" to start your application for your chosen destination</p>
+        </div>
+        
+        <div class="countries-grid" id="countriesGrid">
+            <!-- Populated by JavaScript -->
+        </div>
+    </main>
+
+    <div class="whatsapp-float">
+        <a href="https://wa.me/213542920545" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // Translation Data
+        const translations = {
+            en: {
+                siteName: "Fly for Study",
+                navHome: "Home",
+                navStudy: "Study Visa",
+                navEvisa: "E-Visa",
+                navCanada: "Canada",
+                navServices: "Services",
+                navContact: "Contact",
+                pageTitle: "Study Visa Programs",
+                pageSubtitle: "Your pathway to world-class education",
+                pageDesc: "Comprehensive support for Algerian students seeking higher education abroad",
+                successTag: "Success Stories",
+                successTitle: "Visa Approvals & Results",
+                successDesc: "Real success stories from students who achieved their dreams with our help",
+                testimonial1: "\"Got my France student visa in just 3 weeks! The team helped me with Campus France and all documents. Now studying at Paris-Saclay.\"",
+                testimonial2: "\"Stipendium Hungaricum scholarship winner! Full support from application to visa stamping. Forever grateful.\"",
+                testimonial3: "\"CSC scholarship approved! They guided me through every step. Now pursuing my Master's in Beijing.\"",
+                testimonial4: "\"Professional service from start to finish. My Poland visa was approved without any issues. Highly recommended!\"",
+                testimonial5: "\"From Universitaly pre-enrollment to visa approval, they handled everything. Now living my dream in Rome!\"",
+                testimonial6: "\"CSC Russia scholarship success! The medical test coordination was especially helpful. Thank you Fly for Study!\"",
+                countriesTag: "Choose Your Destination",
+                countriesTitle: "6 Countries, Unlimited Opportunities",
+                countriesDesc: "Click \"Apply Now\" to start your application for your chosen destination",
+                serviceFee: "Our Service Fee",
+                officialFees: "Official Fees",
+                processingTime: "Processing Time",
+                documents: "Documents Required",
+                applyNow: "Apply Now",
+                whatsappApply: "Apply via WhatsApp",
+                france: "France",
+                hungary: "Hungary",
+                poland: "Poland",
+                italy: "Italy",
+                russia: "Russia",
+                china: "China",
+                francePartner: "Campus France + Paris-Saclay Partnership",
+                hungaryPartner: "Stipendium Hungaricum Scholarship",
+                polandPartner: "Polish Universities + NAWA",
+                italyPartner: "Italian Universities + MAECI",
+                russiaPartner: "Russian Universities + CSC",
+                chinaPartner: "Chinese Universities + CSC Scholarship"
+            },
+            fr: {
+                siteName: "Fly for Study",
+                navHome: "Accueil",
+                navStudy: "Visa Étudiant",
+                navEvisa: "E-Visa",
+                navCanada: "Canada",
+                navServices: "Services",
+                navContact: "Contact",
+                pageTitle: "Programmes de Visa Étudiant",
+                pageSubtitle: "Votre chemin vers une éducation de classe mondiale",
+                pageDesc: "Support complet pour les étudiants algériens cherchant l'éducation à l'étranger",
+                successTag: "Histoires de Réussite",
+                successTitle: "Approbations de Visa & Résultats",
+                successDesc: "Vraies histoires de réussite d'étudiants qui ont réalisé leurs rêves avec notre aide",
+                testimonial1: "\"Visa étudiant France obtenu en 3 semaines ! L'équipe m'a aidé avec Campus France et tous les documents. Maintenant à Paris-Saclay.\"",
+                testimonial2: "\"Boursière Stipendium Hungaricum ! Support complet de la candidature au visa. Éternellement reconnaissante.\"",
+                testimonial3: "\"Bourse CSC approuvée ! Ils m'ont guidée à chaque étape. Maintenant en Master à Pékin.\"",
+                testimonial4: "\"Service professionnel du début à la fin. Mon visa Pologne approuvé sans problème. Hautement recommandé !\"",
+                testimonial5: "\"De la pré-inscription Universitaly à l'approbation du visa, ils ont tout géré. Je vis mon rêve à Rome !\"",
+                testimonial6: "\"Succès bourse CSC Russie ! La coordination des tests médicaux était particulièrement utile. Merci Fly for Study !\"",
+                countriesTag: "Choisissez Votre Destination",
+                countriesTitle: "6 Pays, Opportunités Illimitées",
+                countriesDesc: "Cliquez \"Postuler\" pour commencer votre candidature",
+                serviceFee: "Nos Frais de Service",
+                officialFees: "Frais Officiels",
+                processingTime: "Délai de Traitement",
+                documents: "Documents Requis",
+                applyNow: "Postuler",
+                whatsappApply: "Postuler via WhatsApp",
+                france: "France",
+                hungary: "Hongrie",
+                poland: "Pologne",
+                italy: "Italie",
+                russia: "Russie",
+                china: "Chine",
+                francePartner: "Campus France + Partenariat Paris-Saclay",
+                hungaryPartner: "Bourse Stipendium Hungaricum",
+                polandPartner: "Universités Polonaises + NAWA",
+                italyPartner: "Universités Italiennes + MAECI",
+                russiaPartner: "Universités Russes + CSC",
+                chinaPartner: "Universités Chinoises + Bourse CSC"
+            },
+            ar: {
+                siteName: "فلاي فور ستادي",
+                navHome: "الرئيسية",
+                navStudy: "تأشيرة الدراسة",
+                navEvisa: "التأشيرة الإلكترونية",
+                navCanada: "كندا",
+                navServices: "الخدمات",
+                navContact: "اتصل بنا",
+                pageTitle: "برامج تأشيرة الدراسة",
+                pageSubtitle: "طريقك نحو تعليم عالمي المستوى",
+                pageDesc: "دعم شامل للطلاب الجزائريين الباحثين عن التعليم في الخارج",
+                successTag: "قصص النجاح",
+                successTitle: "موافقات التأشيرات والنتائج",
+                successDesc: "قصص نجاح حقيقية من طلاب حققوا أحلامهم بمساعدتنا",
+                testimonial1: "\"حصلت على تأشيرة فرنسا في 3 أسابيع فقط! الفريق ساعدني مع كامبوس فرانس وجميع المستندات. الآن أدرس في باريس ساكلاي.\"",
+                testimonial2: "\"فائزة بمنحة ستيبنديوم هنغاريكوم! دعم كامل من التقديم إلى ختم التأشيرة. ممتنة إلى الأبد.\"",
+                testimonial3: "\"تمت الموافقة على منحة CSC! وجهوني في كل خطوة. الآن أ pursuing الماجستير في بكين.\"",
+                testimonial4: "\"خدمة احترافية من البداية إلى النهاية. تمت الموافقة على تأشيرة بولندا دون أي مشاكل. أنصح بهم بشدة!\"",
+                testimonial5: "\"من التسجيل المسبق في يونيفرسيتالي إلى الموافقة على التأشيرة، تولوا كل شيء. الآن أعيش حلمي في روما!\"",
+                testimonial6: "\"نجاح منحة CSC روسيا! تنسيق الفحوصات الطبية كان مفيداً جداً. شكراً فلاي فور ستادي!\"",
+                countriesTag: "اختر وجهتك",
+                countriesTitle: "٦ دول، فرص لا محدودة",
+                countriesDesc: "اضغط \"تقديم الآن\" لبدء طلبك للوجهة المختارة",
+                serviceFee: "رسوم خدمتنا",
+                officialFees: "الرسوم الرسمية",
+                processingTime: "مدة المعالجة",
+                documents: "المستندات المطلوبة",
+                applyNow: "تقديم الآن",
+                whatsappApply: "التقديم عبر الواتساب",
+                france: "فرنسا",
+                hungary: "المجر",
+                poland: "بولندا",
+                italy: "إيطاليا",
+                russia: "روسيا",
+                china: "الصين",
+                francePartner: "كامبوس فرانس + شراكة باريس ساكلاي",
+                hungaryPartner: "منحة ستيبنديوم هنغاريكوم",
+                polandPartner: "جامعات بولندا + ناوا",
+                italyPartner: "جامعات إيطاليا + مايكي",
+                russiaPartner: "جامعات روسيا + CSC",
+                chinaPartner: "جامعات صينية + منحة CSC"
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        function toggleLanguageDropdown() {
+            document.getElementById('langSelector').classList.toggle('active');
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            updateLanguageUI();
+            document.getElementById('langSelector').classList.remove('active');
+            applyTranslations();
+            
+            if (lang === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                document.body.classList.add('arabic-text');
+            } else {
+                document.body.removeAttribute('dir');
+                document.body.classList.remove('arabic-text');
+            }
+        }
+
+        function updateLanguageUI() {
+            const abbreviations = { en: 'EN', fr: 'FR', ar: 'AR' };
+            document.getElementById('currentLangBtn').textContent = abbreviations[currentLanguage];
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === currentLanguage) btn.classList.add('active');
+            });
+        }
+
+        function applyTranslations() {
+            const texts = translations[currentLanguage];
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (texts[key]) el.innerHTML = texts[key];
+            });
+            renderCountries();
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-selector')) {
+                document.getElementById('langSelector').classList.remove('active');
+            }
+        });
+
+        function toggleMobileMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        const countries = [
+            { id: 'france', key: 'france', partnerKey: 'francePartner', flag: '🇫🇷', class: 'country-france', time: '2-4 weeks', fees: '€99 + €99 OFII', docs: 15 },
+            { id: 'hungary', key: 'hungary', partnerKey: 'hungaryPartner', flag: '🇭🇺', class: 'country-hungary', time: '4-6 weeks', fees: '€60 + HUF 18,000', docs: 14 },
+            { id: 'poland', key: 'poland', partnerKey: 'polandPartner', flag: '🇵🇱', class: 'country-poland', time: '4-8 weeks', fees: '€80 + PLN 340', docs: 14 },
+            { id: 'italy', key: 'italy', partnerKey: 'italyPartner', flag: '🇮🇹', class: 'country-italy', time: '4-8 weeks', fees: '€50 + €70-160', docs: 15 },
+            { id: 'russia', key: 'russia', partnerKey: 'russiaPartner', flag: '🇷🇺', class: 'country-russia', time: '4-6 weeks', fees: '$40-160', docs: 15 },
+            { id: 'china', key: 'china', partnerKey: 'chinaPartner', flag: '🇨🇳', class: 'country-china', time: '4-6 weeks', fees: '$30-140', docs: 16 }
+        ];
+
+        function renderCountries() {
+            const texts = translations[currentLanguage];
+            const grid = document.getElementById('countriesGrid');
+            grid.innerHTML = countries.map(c => `
+                <div class="country-card">
+                    <div class="country-header ${c.class}">
+                        <div class="country-flag">${c.flag}</div>
+                        <h2>${texts[c.key]}</h2>
+                        <div class="partner-info"><i class="fas fa-university"></i> ${texts[c.partnerKey]}</div>
+                    </div>
+                    <div class="country-body">
+                        <div class="fee-row">
+                            <span class="fee-label">${texts.serviceFee}</span>
+                            <span class="fee-value fee-zero">0 DZD</span>
+                        </div>
+                        <div class="fee-row">
+                            <span class="fee-label">${texts.officialFees}</span>
+                            <span class="fee-value">${c.fees}</span>
+                        </div>
+                        <div class="fee-row">
+                            <span class="fee-label">${texts.processingTime}</span>
+                            <span class="fee-value">${c.time}</span>
+                        </div>
+                        <div class="fee-row">
+                            <span class="fee-label">${texts.documents}</span>
+                            <span class="fee-value">${c.docs} items</span>
+                        </div>
+                        <a href="/boobworld/pages/apply-${c.id}.html" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> ${texts.applyNow}
+                        </a>
+                        <a href="https://wa.me/213542920545?text=Hello%20Fly%20for%20Study,%20I%20want%20to%20apply%20for%20${c.key}%20student%20visa" class="btn btn-whatsapp" style="margin-top: 0.5rem;" target="_blank">
+                            <i class="fab fa-whatsapp"></i> ${texts.whatsappApply}
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLanguageUI();
+            applyTranslations();
+            if (currentLanguage === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                document.body.classList.add('arabic-text');
+            }
+        });
+    </script>
+</body>
+</html>
