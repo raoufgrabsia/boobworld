@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Maghreb Campus</title>
-    <meta name="description" content="Get in touch with Maghreb Campus visa experts. WhatsApp, phone, email, or visit our office in Algiers.">
+    <title>Contact Us | Fly for Study</title>
+    <meta name="description" content="Get in touch with Fly for Study visa experts. WhatsApp, phone, email, or visit our office in Algiers.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -188,6 +188,30 @@
             box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
         }
         
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        
         .other-contact {
             background: white;
             padding: 2rem;
@@ -283,17 +307,17 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
+            <a href="/boobworld/index.html" class="logo">
                 <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
-                <span>Maghreb Campus</span>
+                <span>Fly for Study</span>
             </a>
             <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="study-visa.html">Study Visa</a></li>
-                <li><a href="e-visa.html">E-Visa</a></li>
-                <li><a href="canada-visa.html">Canada</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/boobworld/index.html">Home</a></li>
+                <li><a href="/boobworld/pages/study-visa.html">Study Visa</a></li>
+                <li><a href="/boobworld/pages/e-visa.html">E-Visa</a></li>
+                <li><a href="/boobworld/pages/canada-visa.html">Canada</a></li>
+                <li><a href="/boobworld/pages/services.html">Services</a></li>
+                <li><a href="/boobworld/pages/contact.html">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         </div>
@@ -313,7 +337,9 @@
                     <i class="fab fa-whatsapp" style="font-size: 4rem; margin-bottom: 1rem;"></i>
                     <h2>Chat on WhatsApp</h2>
                     <p>Fastest way to get answers. Available 24/7 for urgent inquiries.</p>
-                    <a href="https://wa.me/213542920545" class="whatsapp-btn-large" target="_blank">
+                    <a href="https://wa.me/213542920545?text=Hello%20Fly%20for%20Study,%20I%20need%20information%20about%20visa%20services" 
+                       class="whatsapp-btn-large" 
+                       target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         Start Chat Now
                     </a>
@@ -323,22 +349,22 @@
                     <div class="phone-card">
                         <i class="fas fa-plane"></i>
                         <h4>E-Visa Inquiries</h4>
-                        <p>+213 555 XXX XXX</p>
+                        <p>+213 542 92 05 45</p>
                     </div>
                     <div class="phone-card">
                         <i class="fas fa-graduation-cap"></i>
                         <h4>Study Visa</h4>
-                        <p>+213 555 XXX XXX</p>
+                        <p>+213 542 92 05 45</p>
                     </div>
                     <div class="phone-card">
                         <i class="fas fa-maple-leaf"></i>
                         <h4>Canada Visa</h4>
-                        <p>+213 555 XXX XXX</p>
+                        <p>+213 542 92 05 45</p>
                     </div>
                     <div class="phone-card">
                         <i class="fas fa-concierge-bell"></i>
                         <h4>General Services</h4>
-                        <p>+213 555 XXX XXX</p>
+                        <p>+213 542 92 05 45</p>
                     </div>
                 </div>
                 
@@ -349,7 +375,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <strong>Email</strong>
-                            <p>contact@maghrebcampus.com</p>
+                            <p>raoufgrabsia@hotmail.com</p>
                         </div>
                     </div>
                     
@@ -378,7 +404,17 @@
             <div class="contact-right">
                 <div class="contact-form-container">
                     <h2>Send us a Message</h2>
-                    <form id="contactForm">
+                    
+                    <div id="alertBox" class="alert"></div>
+                    
+                    <form id="contactForm" action="https://formsubmit.co/raoufgrabsia@hotmail.com" method="POST">
+                        <!-- Disable captcha -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <!-- Redirect after submission -->
+                        <input type="hidden" name="_next" value="https://yourusername.github.io/boobworld/pages/contact.html?sent=true">
+                        <!-- Subject line -->
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Fly for Study">
+                        
                         <div class="form-group">
                             <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" required placeholder="Your full name">
@@ -414,7 +450,7 @@
                             <textarea id="message" name="message" required placeholder="Tell us about your visa needs..."></textarea>
                         </div>
                         
-                        <button type="submit" class="btn-submit">
+                        <button type="submit" class="btn-submit" id="submitBtn">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
@@ -430,36 +466,22 @@
     </div>
 
     <script>
+        // Handle form submission success message
+        if (window.location.search.includes('sent=true')) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. We will contact you within 24 hours.';
+            
+            // Clear URL parameter
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Form validation and loading state
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Store in localStorage (simulating submission)
-            let submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-            submissions.push({
-                ...formData,
-                date: new Date().toISOString(),
-                id: Date.now()
-            });
-            localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
-            
-            // Show success message
-            alert('Thank you for your message! We will contact you within 24 hours via WhatsApp or email.');
-            
-            // Reset form
-            this.reset();
-            
-            // Open WhatsApp with pre-filled message as fallback
-            const whatsappText = encodeURIComponent(`Hello Maghreb Campus, I just submitted a contact form. My name is ${formData.name} and I'm interested in ${formData.service}.`);
-            window.open(`https://wa.me/213542920545?text=${whatsappText}`, '_blank');
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         });
     </script>
 
