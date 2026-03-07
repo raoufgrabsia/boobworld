@@ -13,9 +13,7 @@
     <style>
         :root {
             --academic-blue: #1e3a8a;
-            --academic-gold: #f59e0b;
             --academic-light: #dbeafe;
-            --sunset-orange: #f97316;
             --text-dark: #1e293b;
             --text-light: #64748b;
             --bg-light: #f8fafc;
@@ -84,25 +82,11 @@
         .checkbox-group { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.5rem; }
         .checkbox-group input { width: auto; margin-top: 0.25rem; }
         .checkbox-group label { font-size: 0.875rem; color: var(--text-light); }
-        .checkbox-group a { color: var(--academic-blue); }
 
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s ease; border: none; cursor: pointer; font-size: 1rem; }
         .btn-primary { background: linear-gradient(135deg, #f97316, #ec4899); color: white; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3); }
         .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        .success-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 10000; opacity: 0; transition: opacity 0.5s ease; }
-        .success-overlay.active { display: flex; opacity: 1; }
-        .success-content { text-align: center; color: white; transform: scale(0.5); opacity: 0; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
-        .success-overlay.active .success-content { transform: scale(1); opacity: 1; }
-        .success-icon { width: 120px; height: 120px; background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; box-shadow: 0 20px 60px rgba(37, 211, 102, 0.4); animation: successPulse 2s infinite; }
-        @keyframes successPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        .success-icon i { font-size: 4rem; color: white; }
-        .success-content h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .success-content p { font-size: 1.25rem; opacity: 0.9; max-width: 400px; margin: 0 auto 2rem; }
-        .success-timer { width: 200px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 0 auto; overflow: hidden; }
-        .success-timer-bar { height: 100%; background: linear-gradient(90deg, #25d366, #4ade80); width: 100%; transform-origin: left; animation: timerProgress 5s linear forwards; }
-        @keyframes timerProgress { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 
         .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; }
         body[dir="rtl"] .whatsapp-float { right: auto; left: 2rem; }
@@ -116,9 +100,6 @@
             .nav-links.active { display: flex; }
             .mobile-menu-btn { display: block; }
         }
-
-        .error-message { color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem; display: none; }
-        .form-group input:invalid:not(:placeholder-shown) + .error-message { display: block; }
     </style>
 <base target="_blank">
 </head>
@@ -163,10 +144,10 @@
         <div class="form-container">
             <h2 data-translate="formTitle">Student Visa Application</h2>
 
-            <form id="visaForm" action="https://formsubmit.co/raoufgrabsia@hotmail.com" method="POST" enctype="multipart/form-data" target="hidden-form">
+            <form id="visaForm" action="https://formsubmit.co/raoufgrabsia@hotmail.com" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_subject" value="New France Student Visa Application - Fly for Study">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://yourdomain.com/boobworld/pages/france-visa.html">
+                <input type="hidden" name="_next" value="https://flyforstudy.com/boobworld/index.html">
 
                 <div class="form-grid">
                     <div class="form-group">
@@ -187,7 +168,6 @@
                     <div class="form-group">
                         <label for="phone" data-translate="labelPhone">Phone Number *</label>
                         <input type="tel" id="phone" name="Phone" required pattern="[0-9+]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9+]/g, '')">
-                        <span class="error-message" data-translate="phoneError">Please enter numbers only</span>
                     </div>
 
                     <div class="form-group">
@@ -342,18 +322,6 @@
         </div>
     </div>
 
-    <iframe name="hidden-form" style="display:none;"></iframe>
-
-    <!-- Success Overlay -->
-    <div class="success-overlay" id="successOverlay">
-        <div class="success-content">
-            <div class="success-icon"><i class="fas fa-check"></i></div>
-            <h2 data-translate="successTitle">Application Submitted!</h2>
-            <p data-translate="successMessage">We've received your application and documents. Our team will contact you within 24 hours via email or WhatsApp.</p>
-            <div class="success-timer"><div class="success-timer-bar"></div></div>
-        </div>
-    </div>
-
     <div class="whatsapp-float">
         <a href="https://wa.me/213542920545" class="whatsapp-btn" target="_blank">
             <i class="fab fa-whatsapp"></i>
@@ -370,19 +338,18 @@
                 labelFirstName: "First Name *", labelLastName: "Last Name *", labelEmail: "Email Address *", labelPhone: "Phone Number *",
                 labelDOB: "Date of Birth *", labelPassport: "Passport Number *", labelAddress: "Current Address *",
                 labelEducation: "Highest Education *", labelProgram: "Desired Program *", labelField: "Field of Study *",
-                labelUniversity: "Preferred University (if any)", labelLanguage: "French Language Level *",
-                selectOption: "Select...", noneOption: "None / English program",
+                labelUniversity: "Preferred University (if any)",
+                labelLanguage: "French Language Level *",
+                uploadLanguage: "French Language Certificate *", uploadLanguageDesc: "TCF, TEF, or DELF - MANDATORY",
+                selectOption: "Select...",
                 uploadTitle: "Document Upload", uploadDesc: "Please upload clear, high-quality scans or photos of your documents (PDF, JPG, PNG - Max 10MB each)",
                 uploadPassport: "Passport Copy (Data Page) *", uploadPassportDesc: "Valid for at least 10 years",
                 uploadPhoto: "Photo *", uploadPhotoDesc: "White background, ICAO standard, mandatory",
                 uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "Or highest diploma obtained",
                 uploadTranscripts: "Academic Transcripts *", uploadTranscriptsDesc: "Last 2-3 years of study",
-                uploadLanguage: "French Language Certificate *", uploadLanguageDesc: "TCF, TEF, or DELF - MANDATORY",
                 uploadOther: "Other Documents", uploadOtherDesc: "Any additional supporting documents",
                 labelConsent: "I confirm that all information provided is accurate and I consent to Fly for Study processing my data for visa application purposes.",
-                btnSubmit: "Submit Application",
-                successTitle: "Application Submitted!", successMessage: "We've received your application and documents. Our team will contact you within 24 hours via email or WhatsApp.",
-                phoneError: "Please enter numbers only"
+                btnSubmit: "Submit Application"
             },
             fr: {
                 siteName: "Fly for Study",
@@ -392,19 +359,18 @@
                 labelFirstName: "Prénom *", labelLastName: "Nom *", labelEmail: "Adresse Email *", labelPhone: "Téléphone *",
                 labelDOB: "Date de Naissance *", labelPassport: "Numéro de Passeport *", labelAddress: "Adresse Actuelle *",
                 labelEducation: "Niveau d'Études *", labelProgram: "Programme Souhaité *", labelField: "Domaine d'Études *",
-                labelUniversity: "Université Préférée (si applicable)", labelLanguage: "Niveau de French *",
-                selectOption: "Sélectionner...", noneOption: "Aucun / Programme en anglais",
+                labelUniversity: "Université Préférée (si applicable)",
+                labelLanguage: "Niveau de French *",
+                uploadLanguage: "Certificat de French *", uploadLanguageDesc: "TCF, TEF, or DELF - OBLIGATOIRE",
+                selectOption: "Sélectionner...",
                 uploadTitle: "Téléchargement des Documents", uploadDesc: "Veuillez télécharger des scans ou photos clairs de vos documents (PDF, JPG, PNG - Max 10Mo chacun)",
                 uploadPassport: "Copie du Passeport (Page Données) *", uploadPassportDesc: "Valide au moins 10 ans",
                 uploadPhoto: "Photo *", uploadPhotoDesc: "Fond blanc, norme ICAO, obligatoire",
                 uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "Ou diplôme le plus élevé obtenu",
                 uploadTranscripts: "Relevés de Notes *", uploadTranscriptsDesc: "2-3 dernières années d'études",
-                uploadLanguage: "Certificat de French *", uploadLanguageDesc: "TCF, TEF, or DELF - OBLIGATOIRE",
                 uploadOther: "Autres Documents", uploadOtherDesc: "Tout document complémentaire",
                 labelConsent: "Je confirme que toutes les informations fournies sont exactes et j'autorise Fly for Study à traiter mes données pour la demande de visa.",
-                btnSubmit: "Soumettre la Demande",
-                successTitle: "Demande Envoyée !", successMessage: "Nous avons reçu votre demande et documents. Notre équipe vous contactera dans les 24 heures par email ou WhatsApp.",
-                phoneError: "Veuillez entrer uniquement des chiffres"
+                btnSubmit: "Soumettre la Demande"
             },
             ar: {
                 siteName: "فلاي فور ستادي",
@@ -414,12 +380,87 @@
                 labelFirstName: "الاسم *", labelLastName: "اللقب *", labelEmail: "البريد الإلكتروني *", labelPhone: "رقم الهاتف *",
                 labelDOB: "تاريخ الميلاد *", labelPassport: "رقم جواز السفر *", labelAddress: "العنوان الحالي *",
                 labelEducation: "أعلى مؤهل علمي *", labelProgram: "البرنامج المراد *", labelField: "مجال الدراسة *",
-                labelUniversity: "الجامعة المفضلة (إن وجدت)", labelLanguage: "مستوى اللغة French *",
-                selectOption: "اختر...", noneOption: "لا شيء / برنامج بالإنجليزية",
+                labelUniversity: "الجامعة المفضلة (إن وجدت)",
+                labelLanguage: "مستوى اللغة French *",
+                uploadLanguage: "شهادة اللغة French *", uploadLanguageDesc: "TCF, TEF, or DELF - إلزامية",
+                selectOption: "اختر...",
                 uploadTitle: "تحميل المستندات", uploadDesc: "يرجى تحميل نسخ واضحة من مستنداتك (PDF, JPG, PNG - بحد أقصى 10 ميجا لكل ملف)",
                 uploadPassport: "نسخة جواز السفر (صفحة البيانات) *", uploadPassportDesc: "صالح لمدة 10 سنوات على الأقل",
                 uploadPhoto: "Photo *", uploadPhotoDesc: "خلفية بيضاء، معيار ايكاو، إلزامية",
                 uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "أو أعلى شهادة حاصلين عليها",
+                uploadTranscripts: "كشف النقاط *", uploadTranscriptsDesc: "آخر 2-3 سنوات دراسية",
+                uploadOther: "مستندات أخرى", uploadOtherDesc: "أي مستندات داعمة إضافية",
+                labelConsent: "أؤكد أن جميع المعلومات المقدمة دقيقة وأوافق على قيام فلاي فور ستادي بمعالجة بياناتي لغرض طلب التأشيرة.",
+                btnSubmit: "إرسال الطلب"
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        function toggleLanguageDropdown() {
+            document.getElementById('langSelector').classList.toggle('active');
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            updateLanguageUI();
+            document.getElementById('langSelector').classList.remove('active');
+            applyTranslations();
+
+            if (lang === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                document.body.classList.add('arabic-text');
+            } else {
+                document.body.removeAttribute('dir');
+                document.body.classList.remove('arabic-text');
+            }
+        }
+
+        function updateLanguageUI() {
+            const abbreviations = { en: 'EN', fr: 'FR', ar: 'AR' };
+            document.getElementById('currentLangBtn').textContent = abbreviations[currentLanguage];
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === currentLanguage) btn.classList.add('active');
+            });
+        }
+
+        function applyTranslations() {
+            const texts = translations[currentLanguage];
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (texts[key]) el.innerHTML = texts[key];
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-selector')) {
+                document.getElementById('langSelector').classList.remove('active');
+            }
+        });
+
+        function toggleMobileMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        function showFileName(input) {
+            const fileName = input.files[0]?.name || '';
+            const display = input.closest('.file-upload').querySelector('.file-name');
+            display.textContent = fileName ? `Selected: ${fileName}` : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLanguageUI();
+            applyTranslations();
+            if (currentLanguage === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                document.body.classList.add('arabic-text');
+            }
+        });
+    </script>
+</body>
+</html>                uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "أو أعلى شهادة حاصلين عليها",
                 uploadTranscripts: "كشف النقاط *", uploadTranscriptsDesc: "آخر 2-3 سنوات دراسية",
                 uploadLanguage: "شهادة اللغة French *", uploadLanguageDesc: "TCF, TEF, or DELF - إلزامية",
                 uploadOther: "مستندات أخرى", uploadOtherDesc: "أي مستندات داعمة إضافية",
@@ -485,24 +526,32 @@
             display.textContent = fileName ? `Selected: ${fileName}` : '';
         }
 
-        // Form submission - always show success, no error alerts
+        // Form submission using iframe method for file upload support
         document.getElementById('visaForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const form = this;
+
+            // Show loading state
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-            const formData = new FormData(form);
+            // Create a hidden iframe for form submission
+            let iframe = document.getElementById('formSubmitIframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.id = 'formSubmitIframe';
+                iframe.name = 'formSubmitIframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
 
-            // Submit using fetch with no-cors (FormSubmit requirement)
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            }).finally(() => {
-                // Always show success overlay regardless of response
-                // FormSubmit receives data even if browser shows CORS error
+            // Set form target to iframe
+            form.target = 'formSubmitIframe';
+
+            // Handle iframe load event (when form submission completes)
+            iframe.onload = function() {
+                // Show success overlay
                 document.getElementById('successOverlay').classList.add('active');
 
                 // Reset form after showing success
@@ -512,8 +561,15 @@
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-translate="btnSubmit">Submit Application</span>';
                     applyTranslations();
+
+                    // Clear iframe content
+                    iframe.src = 'about:blank';
                 }, 3000);
-            });
+            };
+
+            // Submit the form traditionally (this sends files properly)
+            form.submit();
+        });
         });
         });
 
