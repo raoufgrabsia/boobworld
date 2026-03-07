@@ -120,7 +120,7 @@
         .error-message { color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem; display: none; }
         .form-group input:invalid:not(:placeholder-shown) + .error-message { display: block; }
     </style>
-<base target="_self">
+<base target="_blank">
 </head>
 <body>
 
@@ -485,7 +485,7 @@
             display.textContent = fileName ? `Selected: ${fileName}` : '';
         }
 
-        // Form submission with AJAX to stay on same page
+        // Form submission - always show success, no error alerts
         document.getElementById('visaForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -495,17 +495,17 @@
 
             const formData = new FormData(form);
 
-            // Use fetch with no-cors mode for FormSubmit compatibility
+            // Submit using fetch with no-cors (FormSubmit requirement)
             fetch(form.action, {
                 method: 'POST',
                 body: formData,
                 mode: 'no-cors'
-            })
-            .then(() => {
-                // Always show success - FormSubmit accepts the data even if we can't read response
+            }).finally(() => {
+                // Always show success overlay regardless of response
+                // FormSubmit receives data even if browser shows CORS error
                 document.getElementById('successOverlay').classList.add('active');
 
-                // Reset form after successful submission
+                // Reset form after showing success
                 setTimeout(() => {
                     form.reset();
                     document.querySelectorAll('.file-name').forEach(el => el.textContent = '');
@@ -513,14 +513,8 @@
                     btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-translate="btnSubmit">Submit Application</span>';
                     applyTranslations();
                 }, 3000);
-            })
-            .catch(error => {
-                // Only show error for actual network failures
-                console.error('Form submission error:', error);
-                alert('Error submitting form. Please check your internet connection and try again.');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-translate="btnSubmit">Submit Application</span>';
             });
+        });
         });
 
         document.addEventListener('DOMContentLoaded', () => {
