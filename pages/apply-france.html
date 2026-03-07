@@ -236,7 +236,7 @@
                         <label for="university" data-translate="labelUniversity">Preferred University (if any)</label>
                         <input type="text" id="university" name="Preferred University" placeholder="e.g., University Name">
                     </div>
-
+                    
                     <div class="form-group full-width">
                         <label for="languageLevel" data-translate="labelLanguage">French Language Level *</label>
                         <select id="languageLevel" name="French Level" required>
@@ -247,7 +247,6 @@
                             <option value="B2">B2 - Upper Intermediate</option>
                             <option value="C1">C1 - Advanced</option>
                             <option value="C2">C2 - Proficient</option>
-                            <option value="None" data-translate="noneOption">None / English program</option>
                         </select>
                     </div>
                 </div>
@@ -272,7 +271,7 @@
                         <input type="file" name="Photo" accept=".jpg,.jpeg,.png" required onchange="showFileName(this)">
                         <div class="file-upload-icon"><i class="fas fa-image"></i></div>
                         <div class="file-upload-text">
-                            <strong data-translate="uploadPhoto">Passport Photo *</strong>
+                            <strong data-translate="uploadPhoto">Photo *</strong>
                             <span data-translate="uploadPhotoDesc">White background, ICAO standard, mandatory</span>
                         </div>
                     </label>
@@ -302,7 +301,7 @@
                     </label>
                     <div class="file-name"></div>
                 </div>
-
+                
                 <div class="file-upload">
                     <label class="file-upload-label">
                         <input type="file" name="Language Certificate" accept=".pdf,.jpg,.jpeg,.png" required onchange="showFileName(this)">
@@ -314,7 +313,6 @@
                     </label>
                     <div class="file-name"></div>
                 </div>
-
                 <div class="file-upload">
                     <label class="file-upload-label">
                         <input type="file" name="Additional Documents" accept=".pdf,.jpg,.jpeg,.png" multiple onchange="showFileName(this)">
@@ -372,11 +370,11 @@
                 labelFirstName: "First Name *", labelLastName: "Last Name *", labelEmail: "Email Address *", labelPhone: "Phone Number *",
                 labelDOB: "Date of Birth *", labelPassport: "Passport Number *", labelAddress: "Current Address *",
                 labelEducation: "Highest Education *", labelProgram: "Desired Program *", labelField: "Field of Study *",
-                labelUniversity: "Preferred University (if any)", labelLanguage: "French Language Level *", labelMessage: "Additional Information",
+                labelUniversity: "Preferred University (if any)", labelLanguage: "French Language Level *",
                 selectOption: "Select...", noneOption: "None / English program",
                 uploadTitle: "Document Upload", uploadDesc: "Please upload clear, high-quality scans or photos of your documents (PDF, JPG, PNG - Max 10MB each)",
                 uploadPassport: "Passport Copy (Data Page) *", uploadPassportDesc: "Valid for at least 10 years",
-                uploadPhoto: "Passport Photo *", uploadPhotoDesc: "White background, ICAO standard, mandatory",
+                uploadPhoto: "Photo *", uploadPhotoDesc: "White background, ICAO standard, mandatory",
                 uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "Or highest diploma obtained",
                 uploadTranscripts: "Academic Transcripts *", uploadTranscriptsDesc: "Last 2-3 years of study",
                 uploadLanguage: "French Language Certificate *", uploadLanguageDesc: "TCF, TEF, or DELF - MANDATORY",
@@ -394,11 +392,11 @@
                 labelFirstName: "Prénom *", labelLastName: "Nom *", labelEmail: "Adresse Email *", labelPhone: "Téléphone *",
                 labelDOB: "Date de Naissance *", labelPassport: "Numéro de Passeport *", labelAddress: "Adresse Actuelle *",
                 labelEducation: "Niveau d'Études *", labelProgram: "Programme Souhaité *", labelField: "Domaine d'Études *",
-                labelUniversity: "Université Préférée (si applicable)", labelLanguage: "Niveau de French *", labelMessage: "Informations Complémentaires",
+                labelUniversity: "Université Préférée (si applicable)", labelLanguage: "Niveau de French *",
                 selectOption: "Sélectionner...", noneOption: "Aucun / Programme en anglais",
                 uploadTitle: "Téléchargement des Documents", uploadDesc: "Veuillez télécharger des scans ou photos clairs de vos documents (PDF, JPG, PNG - Max 10Mo chacun)",
                 uploadPassport: "Copie du Passeport (Page Données) *", uploadPassportDesc: "Valide au moins 10 ans",
-                uploadPhoto: "Photo d'Identité *", uploadPhotoDesc: "Fond blanc, norme ICAO, obligatoire",
+                uploadPhoto: "Photo *", uploadPhotoDesc: "Fond blanc, norme ICAO, obligatoire",
                 uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "Ou diplôme le plus élevé obtenu",
                 uploadTranscripts: "Relevés de Notes *", uploadTranscriptsDesc: "2-3 dernières années d'études",
                 uploadLanguage: "Certificat de French *", uploadLanguageDesc: "TCF, TEF, or DELF - OBLIGATOIRE",
@@ -416,11 +414,11 @@
                 labelFirstName: "الاسم *", labelLastName: "اللقب *", labelEmail: "البريد الإلكتروني *", labelPhone: "رقم الهاتف *",
                 labelDOB: "تاريخ الميلاد *", labelPassport: "رقم جواز السفر *", labelAddress: "العنوان الحالي *",
                 labelEducation: "أعلى مؤهل علمي *", labelProgram: "البرنامج المراد *", labelField: "مجال الدراسة *",
-                labelUniversity: "الجامعة المفضلة (إن وجدت)", labelLanguage: "مستوى اللغة French *", labelMessage: "معلومات إضافية",
+                labelUniversity: "الجامعة المفضلة (إن وجدت)", labelLanguage: "مستوى اللغة French *",
                 selectOption: "اختر...", noneOption: "لا شيء / برنامج بالإنجليزية",
                 uploadTitle: "تحميل المستندات", uploadDesc: "يرجى تحميل نسخ واضحة من مستنداتك (PDF, JPG, PNG - بحد أقصى 10 ميجا لكل ملف)",
                 uploadPassport: "نسخة جواز السفر (صفحة البيانات) *", uploadPassportDesc: "صالح لمدة 10 سنوات على الأقل",
-                uploadPhoto: "الصورة الشخصية *", uploadPhotoDesc: "خلفية بيضاء، معيار ايكاو، إلزامية",
+                uploadPhoto: "Photo *", uploadPhotoDesc: "خلفية بيضاء، معيار ايكاو، إلزامية",
                 uploadDiploma: "Bac Certificate *", uploadDiplomaDesc: "أو أعلى شهادة حاصلين عليها",
                 uploadTranscripts: "كشف النقاط *", uploadTranscriptsDesc: "آخر 2-3 سنوات دراسية",
                 uploadLanguage: "شهادة اللغة French *", uploadLanguageDesc: "TCF, TEF, or DELF - إلزامية",
