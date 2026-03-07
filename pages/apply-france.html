@@ -126,17 +126,17 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="/boobworld/index.html" class="logo">
+            <a href="/boobworld/index.html" class="logo" target="_self">
                 <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
                 <span data-translate="siteName">Fly for Study</span>
             </a>
             <ul class="nav-links">
-                <li><a href="/boobworld/index.html" data-translate="navHome">Home</a></li>
-                <li><a href="/boobworld/pages/study-visa.html" data-translate="navStudy">Study Visa</a></li>
-                <li><a href="/boobworld/pages/e-visa.html" data-translate="navEvisa">E-Visa</a></li>
-                <li><a href="/boobworld/pages/france-visa.html" data-translate="navCountry">France</a></li>
-                <li><a href="/boobworld/pages/services.html" data-translate="navServices">Services</a></li>
-                <li><a href="/boobworld/pages/contact.html" data-translate="navContact">Contact</a></li>
+                <li><a href="/boobworld/index.html" data-translate="navHome" target="_self">Home</a></li>
+                <li><a href="/boobworld/pages/study-visa.html" data-translate="navStudy" target="_self">Study Visa</a></li>
+                <li><a href="/boobworld/pages/e-visa.html" data-translate="navEvisa" target="_self">E-Visa</a></li>
+                <li><a href="/boobworld/pages/france-visa.html" data-translate="navCountry" target="_self">France</a></li>
+                <li><a href="/boobworld/pages/services.html" data-translate="navServices" target="_self">Services</a></li>
+                <li><a href="/boobworld/pages/contact.html" data-translate="navContact" target="_self">Contact</a></li>
             </ul>
 
             <div class="language-selector" id="langSelector">
@@ -489,32 +489,35 @@
         document.getElementById('visaForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
+            const form = this;
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-            const formData = new FormData(this);
+            const formData = new FormData(form);
 
-            fetch(this.action, {
+            // Use fetch with no-cors mode for FormSubmit compatibility
+            fetch(form.action, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                mode: 'no-cors'
             })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('successOverlay').classList.add('active');
-                    // Reset form after successful submission
-                    setTimeout(() => {
-                        this.reset();
-                        document.querySelectorAll('.file-name').forEach(el => el.textContent = '');
-                        btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-translate="btnSubmit">Submit Application</span>';
-                        applyTranslations();
-                    }, 3000);
-                } else {
-                    throw new Error('Submission failed');
-                }
+            .then(() => {
+                // Always show success - FormSubmit accepts the data even if we can't read response
+                document.getElementById('successOverlay').classList.add('active');
+
+                // Reset form after successful submission
+                setTimeout(() => {
+                    form.reset();
+                    document.querySelectorAll('.file-name').forEach(el => el.textContent = '');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-translate="btnSubmit">Submit Application</span>';
+                    applyTranslations();
+                }, 3000);
             })
             .catch(error => {
-                alert('Error submitting form. Please try again.');
+                // Only show error for actual network failures
+                console.error('Form submission error:', error);
+                alert('Error submitting form. Please check your internet connection and try again.');
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-translate="btnSubmit">Submit Application</span>';
             });
