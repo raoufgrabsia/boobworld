@@ -67,6 +67,13 @@
             box-shadow: 0 0 60px rgba(240, 230, 140, 0.4), 0 0 120px rgba(240, 230, 140, 0.2);
             pointer-events: none;
             z-index: 0;
+            animation: moonDance 4s ease-in-out infinite;
+        }
+
+        @keyframes moonDance {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
         }
 
         .moon::after {
@@ -108,7 +115,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 50px 30px;
+            padding: 40px 25px;
             max-width: 600px;
             width: 100%;
             box-shadow: 0 8px 32px rgba(138, 43, 226, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
@@ -129,7 +136,7 @@
 
         .moon-icon {
             font-size: 60px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             animation: float 3s ease-in-out infinite;
             display: inline-block;
             filter: drop-shadow(0 0 20px rgba(240, 230, 140, 0.5));
@@ -140,11 +147,23 @@
             50% { transform: translateY(-10px); }
         }
 
+        .dumb-emoji {
+            font-size: 2rem;
+            margin: 5px 0;
+            animation: spin 3s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .name {
             font-family: 'Dancing Script', cursive;
             font-size: 5rem;
             color: #e6e6fa;
-            margin: 10px 0 15px 0;
+            margin: 5px 0 10px 0;
             text-shadow: 0 0 20px rgba(230, 230, 250, 0.5), 0 0 40px rgba(147, 112, 219, 0.3);
             animation: glow 2.5s ease-in-out infinite alternate;
         }
@@ -155,15 +174,32 @@
         }
 
         .message {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #d8bfd8;
-            margin: 15px 0;
+            margin: 10px 0;
             line-height: 1.8;
             font-weight: 300;
         }
 
+        .silly-box {
+            background: rgba(255, 107, 157, 0.1);
+            border: 1px dashed rgba(255, 107, 157, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            color: #ffb6c1;
+        }
+
+        .silly-box .warning {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
         .question-box {
-            margin-top: 25px;
+            margin-top: 20px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
@@ -174,7 +210,13 @@
             font-family: 'Dancing Script', cursive;
             font-size: 1.8rem;
             color: #dda0dd;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+
+        .question-sub {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 15px;
         }
 
         .buttons {
@@ -277,6 +319,13 @@
             line-height: 1.6;
         }
 
+        .surprise-dumb {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
         .whatsapp-btn {
             margin-top: 25px;
             padding: 14px 40px;
@@ -320,14 +369,19 @@
 
         .footer {
             margin-top: 20px;
-            font-size: 0.8rem;
-            color: #b0c4de;
-            opacity: 0.6;
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .footer .tiny {
+            font-size: 0.65rem;
+            color: #444;
+            margin-top: 5px;
         }
 
         @media (max-width: 600px) {
             .name { font-size: 3.5rem; }
-            .card { padding: 35px 20px; }
+            .card { padding: 30px 18px; }
             .message { font-size: 1rem; }
             .question { font-size: 1.5rem; }
             .btn { padding: 12px 35px; font-size: 1rem; }
@@ -372,48 +426,60 @@
     <div class="container">
         <div class="card">
             <div class="moon-icon">🌙</div>
+            <div class="dumb-emoji">🧠✨</div>
             
             <div class="name">Mouhja</div>
             
             <div class="message">
-                Under this endless starry sky,<br>
-                there's only one name I whisper.<br>
-                You are my moon, my stars,<br>
-                my entire universe.
+                In every sunset, in stars that shine,<br>
+                In joy or sorrow, through rain or shine.<br>
+                In your eyes, I see stars aling,<br>
+                All is yours, and you are mine.
+            </div>
+
+            <div class="silly-box">
+                This website has been certified 100% made with questionable life choices<br>
+                <span class="warning">(No refunds. No returns. No dignity.)</span>
             </div>
 
             <div class="question-box">
                 <div class="question">Do you love me?</div>
+                <div class="question-sub">(be honest... or lie, I can't tell the difference)</div>
                 <div class="buttons">
-                    <button class="btn btn-yes" onclick="showLove()">Yes</button>
-                    <button class="btn btn-no" onclick="showTease()">No</button>
+                    <button class="btn btn-yes" onclick="showLove()">Yes 💕</button>
+                    <button class="btn btn-no" onclick="showTease()">No 💔</button>
                 </div>
             </div>
             
-            <div class="footer">Forever & Always</div>
+            <div class="footer">
+                Made with 2 brain cells and a lot of caffeine<br>
+                <span class="tiny">No potatoes were harmed in the making of this website</span>
+            </div>
         </div>
     </div>
 
     <!-- Yes Surprise + WhatsApp -->
     <div class="surprise" id="surpriseYes">
         <div class="surprise-content">
-            <div class="surprise-emoji">🥰</div>
-            <div class="surprise-text">I knew it!</div>
-            <div class="surprise-sub">Send me your answer on WhatsApp 💚</div>
+            <div class="surprise-emoji">🥳</div>
+            <div class="surprise-text">I KNEW IT!</div>
+            <div class="surprise-sub">You have excellent taste in humans 😎</div>
+            <div class="surprise-dumb">(I will now proceed to do a happy dance in my room alone)</div>
             <a class="whatsapp-btn" id="whatsappLink" href="#">
                 📱 Send "I love you too"
             </a>
-            <button class="close-surprise" onclick="hideLove()">Close</button>
+            <button class="close-surprise" onclick="hideLove()">Close (but why would you?)</button>
         </div>
     </div>
 
     <!-- No Tease -->
     <div class="surprise" id="surpriseNo">
         <div class="surprise-content">
-            <div class="surprise-emoji">😏</div>
-            <div class="surprise-text">Are you sure?</div>
-            <div class="surprise-sub">My heart says you do...<br>Try "Yes" and see what happens 💕</div>
-            <button class="close-surprise" onclick="hideTease()">Okay, let me think...</button>
+            <div class="surprise-emoji">🤨</div>
+            <div class="surprise-text">Excuse me?</div>
+            <div class="surprise-sub">My mom said I'm a catch.<br>Are you calling my mom a liar? 😤</div>
+            <div class="surprise-dumb">(This button is broken. Try the other one. Trust me.)</div>
+            <button class="close-surprise" onclick="hideTease()">Fine, let me reconsider...</button>
         </div>
     </div>
 
@@ -447,7 +513,7 @@
             for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
-                    heart.innerHTML = ['💖', '💕', '💗', '💝', '💘'][Math.floor(Math.random() * 5)];
+                    heart.innerHTML = ['💖', '💕', '💗', '💝', '💘', '🧠', '🥔'][Math.floor(Math.random() * 7)];
                     heart.style.position = 'fixed';
                     heart.style.left = Math.random() * 100 + '%';
                     heart.style.top = '100%';
